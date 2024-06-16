@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: Poppins;
+}
+input::placeholder {
+  color: gray; /* Ubah warna sesuai kebutuhan */
+  opacity: 1; /* Menyesuaikan visibilitas warna placeholder */
+}
+#signin {
+  background-image: url("../img/bg.png");
+  background-size: cover; /* Mengatur gambar agar menutupi seluruh area */
+  background-position: center; /* Menempatkan gambar di tengah */
+  background-repeat: no-repeat; /* Mencegah pengulangan gambar */
+  height: 100%; /* Membuat elemen memiliki tinggi penuh */
+}
+.active {
+  background-color: #d6f170;
+  color: #000;
+  border-radius: 20px;
+}
+i.fa-solid.fa-eye-slash {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+i.fa-solid.fa-eye {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.hover-effect {
+  background-color: initial;
+  color: #fff;
+  transition: background-color 0.3s, color 0.3s; /* Animasi transisi untuk perubahan halus */
+}
+
+.hover-effect:hover {
+  background-color: #d6f170;
+  color: #1f1d30;
+}
