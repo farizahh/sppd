@@ -36,13 +36,13 @@
                             <script src="assets/js/script.js"></script>
                         </div>
                         <div class="flex items-center justify-between">
-                            <a href="#" class="text-sm font-normal text-zinc-800 hover:underline dark:text-primary-500">Lupa Kata Sandi?</a>
+                            <a href="#" class="text-sm font-normal text-zinc-800 hover:underline">Lupa Kata Sandi?</a>
                         </div>
                         <div class="flex items-center justify-between">
                             <div class="flex items-start text-sm">
                                 <div class="flex items-center h-5">
                                     <input id="remember" aria-describedby="remember" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300" required="">
-                                    <label for="remember" class="text-zinc-800 dark:text-gray-300 ml-3">Tetap Masuk</label>
+                                    <label for="remember" class="text-zinc-800 ml-3">Tetap Masuk</label>
                                 </div>
                                 <div class="ml-36">
                                     <button type="button" class="text-zinc-800 bg-[#D6F170] hover:bg-lime-300 focus:ring-4 focus:ring-lime-300 font-medium rounded-lg text-sm px-10 py-2.5 me-2 mb-2 focus:outline-none" onclick="window.location.href = 'user.php';">Login</button>

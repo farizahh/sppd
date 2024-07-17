@@ -28,7 +28,7 @@
                 <ul class="space-y-2 font-medium">
                     <li>
                         <a href="user.php" class="flex items-center p-2 text-gray-500 rounded-lg hover:bg-[#D6F170] hover:text-black group">
-                            <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
+                            <svg class="w-5 h-5 text-gray-500 transition duration-75 group-hover:text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
                                 <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
                                 <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
                             </svg>
@@ -37,13 +37,13 @@
                     </li>
                     <li>
                         <a href="buatspt.php" class="flex items-center p-2 text-gray-500 rounded-lg hover:bg-[#D6F170] hover:text-black group">
-                            <i class="fa-solid fa-file-circle-plus w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white"></i>
+                            <i class="fa-solid fa-file-circle-plus w-5 h-5 text-gray-500 transition duration-75 group-hover:text-black"></i>
                             <span class="text-sm ms-3 whitespace-nowrap">Buat SPT</span>
                         </a>
                     </li>
                     <li class="bg-[#D6F170] rounded-lg">
                         <button type="button" class="flex items-center p-2 pr-3 rounded-lg text-black group" aria-controls="dropdown-lp" data-collapse-toggle="dropdown-lp">
-                            <i class="fa-solid fa-file-circle-plus w-5 h-5 text-black transition duration-75 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white"></i>
+                            <i class="fa-solid fa-file-circle-plus w-5 h-5 text-black transition duration-75 group-hover:text-black"></i>
                             <span class="text-sm ms-3 whitespace-nowrap pr-24">Laporan</span>
                             <svg class="w-3 h-3 text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
@@ -52,9 +52,9 @@
                         <ul id="dropdown-lp" class="py-2 space-y-2 text-sm">
                             <li>
                                 <button type="button" class="flex items-center p-2 text-gray-600 rounded-lg hover:bg-[#D6F170] hover:text-black group" aria-controls="dropdown-uha" data-collapse-toggle="dropdown-uha">
-                                    <i class="fa-solid fa-file-pen w-5 h-5 text-gray-600 transition duration-75 group-hover:text-black dark:group-hover:text-white"></i>
+                                    <i class="fa-solid fa-file-pen w-5 h-5 text-gray-600 transition duration-75 group-hover:text-black"></i>
                                     <span class="text-gray-600 group-hover:text-black text-sm ms-3 whitespace-nowrap pr-16">Uang Harian</span>
-                                    <i class="fa-solid fa-angle-right w-3 h-3 text-gray-600 hover:text-black transition duration-75 group-hover:text-black dark:group-hover:text-white"></i>
+                                    <i class="fa-solid fa-angle-right w-3 h-3 text-gray-600 hover:text-black transition duration-75 group-hover:text-black"></i>
                                 </button>
                                 <ul id="dropdown-uha" class="hidden py-2 space-y-2 text-sm">
                                     <li>
@@ -67,9 +67,9 @@
                             </li>
                             <li>
                                 <button type="button" class="flex items-center p-2 text-gray-600 rounded-lg hover:bg-[#D6F170] hover:text-black group" aria-controls="dropdown-tr" data-collapse-toggle="dropdown-tr">
-                                    <i class="fa-solid fa-file-pen w-5 h-5 text-gray-600 transition duration-75 group-hover:text-black dark:group-hover:text-white"></i>
+                                    <i class="fa-solid fa-file-pen w-5 h-5 text-gray-600 transition duration-75 group-hover:text-black"></i>
                                     <span class="text-gray-600 text-sm ms-3 whitespace-nowrap pr-5 group-hover:text-black">Biaya Transportasi</span>
-                                    <i class="fa-solid fa-angle-right w-3 h-3 text-gray-600 transition duration-75 group-hover:text-black dark:group-hover:text-white"></i>
+                                    <i class="fa-solid fa-angle-right w-3 h-3 text-gray-600 transition duration-75 group-hover:text-black"></i>
                                 </button>
                                 <ul id="dropdown-tr" class="hidden py-2 space-y-2 text-sm">
                                     <li>
@@ -88,19 +88,19 @@
                             </li>
                             <li>
                                 <a href="by_penginapan.php" class="flex items-center p-2 text-gray-600 rounded-lg hover:bg-[#D6F170] hover:text-black group">
-                                    <i class="fa-solid fa-file-pen w-5 h-5 text-gray-600 transition duration-75 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white"></i>
+                                    <i class="fa-solid fa-file-pen w-5 h-5 text-gray-600 transition duration-75 group-hover:text-black"></i>
                                     <span class="text-sm ms-3 whitespace-nowrap">Biaya Penginapan</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="by_representasi.php" class="flex items-center p-2 text-gray-600 rounded-lg hover:bg-[#D6F170] hover:text-black group">
-                                    <i class="fa-solid fa-file-pen w-5 h-5 text-gray-6600 transition duration-75 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white"></i>
+                                    <i class="fa-solid fa-file-pen w-5 h-5 text-gray-6600 transition duration-75 group-hover:text-black"></i>
                                     <span class="text-sm ms-3 whitespace-nowrap">Uang Representasi</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="cetak.php" class="flex items-center p-2 text-black rounded-lg bg-[#D6F170] hover:text-black group active">
-                                    <i class="fa-solid fa-print w-5 h-5 text-black transition duration-75 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white"></i>
+                                    <i class="fa-solid fa-print w-5 h-5 text-black transition duration-75 group-hover:text-black"></i>
                                     <span class="text-sm ms-3 whitespace-nowrap">Cetak Data</span>
                                 </a>
                             </li>
@@ -159,8 +159,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 text-center">
-                                        <th scope="row" class="px-3 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <tr class="bg-white border-b hover:bg-gray-50 text-center">
+                                        <th scope="row" class="px-3 py-4 font-medium text-gray-900 whitespace-nowrap">
                                             1
                                         </th>
                                         <td class="px-3 py-4">
@@ -238,7 +238,7 @@
                             </table>
                         </div>
                         <nav class="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4" aria-label="Table navigation">
-                            <span class="text-xs font-normal text-gray-500 dark:text-gray-400 mb-4 md:mb-0 block w-full md:inline md:w-auto">Showing <span class="font-semibold text-gray-900 dark:text-white">1-10</span> of <span class="font-semibold text-gray-900 dark:text-white">100</span></span>
+                            <span class="text-xs font-normal text-gray-500 mb-4 md:mb-0 block w-full md:inline md:w-auto">Showing <span class="font-semibold text-gray-900">1-10</span> of <span class="font-semibold text-gray-900">100</span></span>
                             <ul class="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8">
                                 <li>
                                     <a href="#" class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700">Previous</a>
@@ -250,16 +250,16 @@
                                     <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">2</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800">3</a>
+                                    <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">3</a>
                                 </li>
                                 <li>
                                     <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">4</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">5</a>
+                                    <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">5</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+                                    <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700">Next</a>
                                 </li>
                             </ul>
                         </nav>

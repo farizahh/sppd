@@ -1,3 +1,7 @@
+<?php
+include 'koneksi.php'
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +32,7 @@
                 <ul class="space-y-2 font-medium">
                     <li>
                         <a href="user.php" class="flex items-center p-2 text-black rounded-lg hover:bg-[#D6F170] hover:text-black group active">
-                            <svg class="w-5 h-5 text-black transition duration-75 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
+                            <svg class="w-5 h-5 text-black transition duration-75 group-hover:text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
                                 <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
                                 <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
                             </svg>
@@ -37,13 +41,13 @@
                     </li>
                     <li>
                         <a href="buatspt.php" class="flex items-center p-2 text-gray-500 rounded-lg hover:bg-[#D6F170] hover:text-black group">
-                            <i class="fa-solid fa-file-circle-plus w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white"></i>
+                            <i class="fa-solid fa-file-circle-plus w-5 h-5 text-gray-500 transition duration-75 group-hover:text-black"></i>
                             <span class="text-sm ms-3 whitespace-nowrap">Buat SPT</span>
                         </a>
                     </li>
                     <li>
                         <button type="button" class="flex items-center p-2 pr-3 rounded-lg hover:bg-[#D6F170] text-gray-500 hover:text-black group" aria-controls="dropdown-lp" data-collapse-toggle="dropdown-lp">
-                            <i class="fa-solid fa-file-circle-plus w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white"></i>
+                            <i class="fa-solid fa-file-circle-plus w-5 h-5 text-gray-500 transition duration-75 group-hover:text-black"></i>
                             <span class="text-sm ms-3 whitespace-nowrap pr-28">Laporan</span>
                             <svg class="w-3 h-3 text-gray-500 group-hover:text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
@@ -52,9 +56,9 @@
                         <ul id="dropdown-lp" class="hidden py-2 space-y-2 text-sm">
                             <li>
                                 <button type="button" class="flex items-center p-2 text-gray-500 rounded-lg hover:bg-[#D6F170] hover:text-black group" aria-controls="dropdown-uha" data-collapse-toggle="dropdown-uha">
-                                    <i class="fa-solid fa-file-pen w-5 h-5 text-gray-500 transition duration-75 group-hover:text-black dark:group-hover:text-white"></i>
+                                    <i class="fa-solid fa-file-pen w-5 h-5 text-gray-500 transition duration-75 group-hover:text-black"></i>
                                     <span class="text-gray-500 group-hover:text-black text-sm ms-3 whitespace-nowrap pr-20">Uang Harian</span>
-                                    <i class="fa-solid fa-angle-right w-3 h-3 text-gray-500 hover:text-black transition duration-75 group-hover:text-black dark:group-hover:text-white"></i>
+                                    <i class="fa-solid fa-angle-right w-3 h-3 text-gray-500 hover:text-black transition duration-75 group-hover:text-black"></i>
                                 </button>
                                 <ul id="dropdown-uha" class="hidden py-2 space-y-2 text-sm">
                                     <li>
@@ -67,9 +71,9 @@
                             </li>
                             <li>
                                 <button type="button" class="flex items-center p-2 text-gray-500 rounded-lg hover:bg-[#D6F170] hover:text-black group" aria-controls="dropdown-tr" data-collapse-toggle="dropdown-tr">
-                                    <i class="fa-solid fa-file-pen w-5 h-5 text-gray-500 transition duration-75 group-hover:text-black dark:group-hover:text-white"></i>
+                                    <i class="fa-solid fa-file-pen w-5 h-5 text-gray-500 transition duration-75 group-hover:text-black"></i>
                                     <span class="text-gray-500 group-hover:text-black text-sm ms-3 whitespace-nowrap pr-9">Biaya Transportasi</span>
-                                    <i class="fa-solid fa-angle-right w-3 h-3 text-gray-500 hover:text-black transition duration-75 group-hover:text-black dark:group-hover:text-white"></i>
+                                    <i class="fa-solid fa-angle-right w-3 h-3 text-gray-500 hover:text-black transition duration-75 group-hover:text-black"></i>
                                 </button>
                                 <ul id="dropdown-tr" class="hidden py-2 space-y-2 text-sm">
                                     <li>
@@ -88,19 +92,19 @@
                             </li>
                             <li>
                                 <a href="by_penginapan.php" class="flex items-center p-2 text-gray-500 rounded-lg hover:bg-[#D6F170] hover:text-black group">
-                                    <i class="fa-solid fa-file-pen w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white"></i>
+                                    <i class="fa-solid fa-file-pen w-5 h-5 text-gray-500 transition duration-75 group-hover:text-black"></i>
                                     <span class="text-sm ms-3 whitespace-nowrap">Biaya Penginapan</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="by_representasi.php" class="flex items-center p-2 text-gray-500 rounded-lg hover:bg-[#D6F170] hover:text-black group">
-                                    <i class="fa-solid fa-file-pen w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white"></i>
+                                    <i class="fa-solid fa-file-pen w-5 h-5 text-gray-500 transition duration-75 group-hover:text-black"></i>
                                     <span class="text-sm ms-3 whitespace-nowrap">Uang Representasi</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="cetak.php" class="flex items-center p-2 text-gray-500 rounded-lg hover:bg-[#D6F170] hover:text-black group">
-                                    <i class="fa-solid fa-print w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white"></i>
+                                    <i class="fa-solid fa-print w-5 h-5 text-gray-500 transition duration-75 group-hover:text-black"></i>
                                     <span class="text-sm ms-3 whitespace-nowrap">Cetak Data</span>
                                 </a>
                             </li>
@@ -109,6 +113,30 @@
                 </ul>
             </div>
         </aside>
+
+        <?php
+        // Jumlah entri per halaman
+        $batas = isset($_GET['batas']) ? (int)$_GET['batas'] : 10;
+
+        // Mendapatkan halaman saat ini dari parameter URL, default ke halaman 1 jika tidak ada
+        $halaman = isset($_GET['halaman']) ? (int)$_GET['halaman'] : 1;
+
+        // Menghitung halaman awal dan kueri sesuai dengan halaman dan batas
+        $halaman_awal = ($halaman > 1) ? ($halaman * $batas) - $batas : 0;
+
+        // Kueri untuk mengambil jumlah total entri
+        $query_total = "SELECT COUNT(*) as total FROM pegawai";
+        $result_total = $koneksi->query($query_total);
+        $row_total = $result_total->fetch_assoc();
+        $total_entries = $row_total['total'];
+
+        // Menghitung total halaman
+        $total_halaman = ceil($total_entries / $batas);
+
+        // Menghitung entri awal dan akhir untuk tampilan
+        $start_entry = $halaman_awal + 1;
+        $end_entry = min($halaman_awal + $batas, $total_entries);
+        ?>
 
         <div class="p-4 sm:ml-64">
             <div class="p-4 mt-14">
@@ -120,14 +148,16 @@
                     <div class="shadow-lg px-5 py-3">
                         <div class="flex justify-between">
                             <div class="text-sm">
-                                <label for="">Show : </label>
-                                <select name="dynamic-table_length" aria-controls="dynamic-table" class="form-control input-sm px-2" fdprocessedid="m599me">
-                                    <option value="10">10</option>
-                                    <option value="25">25</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
-                                </select>
-                                <label for="">entries</label>
+                                <form method="GET" action="">
+                                    <label for="batas">Show :</label>
+                                    <select name="batas" id="batas" class="form-control input-sm px-2" onchange="this.form.submit()">
+                                        <option value="10" <?php if ($batas == 10) echo 'selected'; ?>>10</option>
+                                        <option value="25" <?php if ($batas == 25) echo 'selected'; ?>>25</option>
+                                        <option value="50" <?php if ($batas == 50) echo 'selected'; ?>>50</option>
+                                        <option value="100" <?php if ($batas == 100) echo 'selected'; ?>>100</option>
+                                    </select>
+                                    <label for="batas">entries</label>
+                                </form>
                             </div>
                         </div>
 
@@ -156,8 +186,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 text-center">
-                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <tr class="bg-white border-b hover:bg-gray-50 text-center">
+                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                             1
                                         </th>
                                         <td class="px-6 py-4">
@@ -181,32 +211,43 @@
                                 </tbody>
                             </table>
                         </div>
-                        <nav class="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4" aria-label="Table navigation">
-                            <span class="text-xs font-normal text-gray-500 dark:text-gray-400 mb-4 md:mb-0 block w-full md:inline md:w-auto">Showing <span class="font-semibold text-gray-900 dark:text-white">1-10</span> of <span class="font-semibold text-gray-900 dark:text-white">100</span></span>
-                            <ul class="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8">
-                                <li>
-                                    <a href="#" class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700">Previous</a>
-                                </li>
-                                <li>
-                                    <a href="#" aria-current="page" class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700">1</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">2</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800">3</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">4</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">5</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
-                                </li>
-                            </ul>
-                        </nav>
+                        <div class="flex justify-between text-sm mx-auto">
+                            <div class="pt-4">
+                                <?php echo "Showing $start_entry to $end_entry of $total_entries entries"; ?>
+                            </div>
+                            <div>
+                                <!-- Pagination navigation -->
+                                <nav class="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4 mb-10" aria-label="Table navigation">
+                                    <ul class=" flex pagination justify-content-center">
+                                        <!-- Tautan "Previous" -->
+                                        <li class="page-item px-3">
+                                            <a class="page-link" <?php if ($halaman > 1) {
+                                                                        echo "href='?halaman=" . ($halaman - 1) . "&batas=$batas'";
+                                                                    } ?>>Previous</a>
+                                        </li>
+
+                                        <!-- Tautan Nomor Halaman -->
+                                        <?php
+                                        for ($x = max(1, $halaman - 5); $x <= min($halaman + 5, $total_halaman); $x++) {
+                                        ?>
+                                            <li class="page-item px-3 <?php if ($x == $halaman) echo 'active'; ?>">
+                                                <a class="page-link" href="?halaman=<?php echo $x ?>&batas=<?php echo $batas ?>"><?php echo $x; ?></a>
+                                            </li>
+                                        <?php
+                                        }
+                                        ?>
+
+                                        <!-- Tautan "Next" -->
+                                        <li class="page-item px-3">
+                                            <a class="page-link" <?php if ($halaman < $total_halaman) {
+                                                                        echo "href='?halaman=" . ($halaman + 1) . "&batas=$batas'";
+                                                                    } ?>>Next</a>
+                                        </li>
+
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

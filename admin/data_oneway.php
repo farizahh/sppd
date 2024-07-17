@@ -58,23 +58,23 @@ include '../koneksi.php';
                         </a>
                     </li>
                     <li>
-                        <button type="button" class="flex items-center p-2 rounded-lg hover:bg-[#D6F170] text-gray-500 hover:text-black group" aria-controls="dropdown-mb" data-collapse-toggle="dropdown-mb">
+                        <button type="button" class="flex items-center p-2 pr-3 rounded-lg hover:bg-[#D6F170] text-gray-500 hover:text-black group" aria-controls="dropdown-mb" data-collapse-toggle="dropdown-mb">
                             <i class="fa-solid fa-file-circle-plus w-5 h-5 text-gray-500 transition duration-75 group-hover:text-black"></i>
-                            <span class="flex-1 ms-3 whitespace-nowrap pr-9 text-sm">D. Master Biaya</span>
-                            <i class="fa-solid fa-angle-down w-3 h-3 black group-hover:text-black"></i>
+                            <span class="flex-1 ms-3 whitespace-nowrap text-sm pr-11">D. Master Biaya</span>
+                            <i class="fa-solid fa-angle-down w-3 h-3 text-gray-500 group-hover:text-black"></i>
                         </button>
                         <ul id="dropdown-mb" class="hidden py-2 space-y-2 text-sm">
                             <li>
-                                <button type="button" class="flex items-center p-2 pl-5 rounded-lg hover:bg-[#D6F170] text-gray-500 hover:text-black group" aria-controls="dropdown-uha" data-collapse-toggle="dropdown-uha">
-                                    <span class="flex-1 ms-3 whitespace-nowrap pr-5 text-sm px-4">Uang Harian</span>
-                                    <i class="fa-solid fa-angle-right w-3 h-3 text-gray-500 group-hover:text-black"></i>
+                                <button type="button" class="flex items-center p-2 pr-6 rounded-lg hover:bg-[#D6F170] text-gray-500 hover:text-black group" aria-controls="dropdown-uha" data-collapse-toggle="dropdown-uha">
+                                    <span class="flex-1 ms-3 whitespace-nowrap text-sm pl-5 pr-4">Uang Harian</span>
+                                    <i class="fa-solid fa-angle-right w-3 h-3 pl-12 text-gray-500 group-hover:text-black"></i>
                                 </button>
                                 <ul id="dropdown-uha" class="hidden py-2 space-y-2 text-sm">
                                     <li>
-                                        <a href="data_uhpddn.php" class="flex items-center w-full p-2 text-gray-500 transition duration-75 rounded-lg pl-20 group hover:bg-[#D6F170]">PDDN</a>
+                                        <a href="data_uhpddn.php" class="flex items-center w-full p-2 text-gray-500 transition duration-75 rounded-lg pl-20 group hover:bg-[#D6F170] hover:text-black">PDDN</a>
                                     </li>
                                     <li>
-                                        <a href="data_uhrapat.php" class="flex items-center w-full p-2 text-gray-500 transition duration-75 rounded-lg pl-20 group hover:bg-[#D6F170]">Kegiatan Rapat</a>
+                                        <a href="data_uhrapat.php" class="flex items-center w-full p-2 text-gray-500 transition duration-75 rounded-lg pl-20 group hover:bg-[#D6F170] hover:text-black">Kegiatan Rapat</a>
                                     </li>
                                 </ul>
                             </li>
@@ -87,9 +87,9 @@ include '../koneksi.php';
                         </ul>
                     </li>
                     <li class="bg-[#D6F170] rounded-lg">
-                        <button type="button" class="flex items-center p-2 pr-4 rounded-lg bg-[#D6F170] text-black hover:text-black group active" aria-controls="dropdown-mt" data-collapse-toggle="dropdown-mt">
+                        <button type="button" class="flex items-center p-2 pr-2 rounded-lg bg-[#D6F170] text-black hover:text-black group active" aria-controls="dropdown-mt" data-collapse-toggle="dropdown-mt">
                             <i class="fa-solid fa-file-circle-plus w-5 h-5 text-black transition duration-75 group-hover:text-black"></i>
-                            <span class="text-sm ms-3 whitespace-nowrap pr-2">D. Master Transport</span>
+                            <span class="text-sm ms-3 whitespace-nowrap pr-4">D. Master Transport</span>
                             <svg class="w-3 h-3 text-black group-hover:text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
                             </svg>
@@ -107,7 +107,7 @@ include '../koneksi.php';
                             <li>
                                 <button type="button" class="flex items-center p-2 pl-8 text-black rounded-lg hover:bg-[#D6F170] hover:text-black group" aria-controls="dropdown-tr" data-collapse-toggle="dropdown-tr">
                                     <span class="text-gray-600 group-hover:text-black text-sm ms-3 whitespace-nowrap pr-5">Sewa Kendaraan</span>
-                                    <i class="fa-solid fa-angle-right w-3 h-3 text-gray-500 hover:text-black transition duration-75 group-hover:text-black dark:group-hover:text-white"></i>
+                                    <i class="fa-solid fa-angle-right w-3 h-3 text-gray-500 hover:text-black transition duration-75 group-hover:text-black"></i>
                                 </button>
                                 <ul id="dropdown-tr" class="hidden py-2 space-y-2 text-sm pl-5">
                                     <li>

@@ -27,20 +27,20 @@
                 </div>
                 <ul class="space-y-2 font-medium">
                     <li>
-                        <a href="dt_pegawai.php" class="flex items-center p-2 text-black rounded-lg hover:bg-[#D6F170] hover:text-black group active">
-                            <i class="fa-solid fa-file-circle-plus w-5 h-5 text-black transition duration-75 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white"></i>
+                        <a href="dt_pegawai.php" class="flex items-center p-2 text-gray-500 rounded-lg hover:bg-[#D6F170] hover:text-black group">
+                            <i class="fa-solid fa-file-circle-plus w-5 h-5 text-gray-500 transition duration-75 group-hover:text-black"></i>
                             <span class="flex-1 ms-3 whitespace-nowrap text-sm">Data Pegawai</span>
                         </a>
                     </li>
                     <li>
                         <a href="dt_kegiatan.php" class="flex items-center p-2 text-gray-500 rounded-lg hover:bg-[#D6F170] hover:text-black group">
-                            <i class="fa-solid fa-file-circle-plus w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white"></i>
+                            <i class="fa-solid fa-file-circle-plus w-5 h-5 text-gray-500 transition duration-75 group-hover:text-black"></i>
                             <span class="flex-1 ms-3 whitespace-nowrap text-sm">Data Kegiatan</span>
                         </a>
                     </li>
                     <li>
-                        <a href="s_cetak.php" class="flex items-center p-2 text-gray-500 rounded-lg hover:bg-[#D6F170] hover:text-black group">
-                            <i class="fa-solid fa-print w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white"></i>
+                        <a href="s_cetak.php" class="flex items-center p-2 text-black rounded-lg hover:bg-[#D6F170] hover:text-black group active">
+                            <i class="fa-solid fa-print w-5 h-5 text-black transition duration-75 group-hover:text-black"></i>
                             <span class="flex-1 ms-3 whitespace-nowrap text-sm">Cetak Data</span>
                         </a>
                     </li>

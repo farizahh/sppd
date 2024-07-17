@@ -1,3 +1,7 @@
+<?php
+include 'koneksi.php'
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +32,7 @@
                 <ul class="space-y-2 font-medium">
                     <li>
                         <a href="user.php" class="flex items-center p-2 text-black rounded-lg hover:bg-[#D6F170] hover:text-black group active">
-                            <svg class="w-5 h-5 text-black transition duration-75 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
+                            <svg class="w-5 h-5 text-black transition duration-75 group-hover:text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
                                 <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
                                 <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
                             </svg>
@@ -37,13 +41,13 @@
                     </li>
                     <li>
                         <a href="buatspt.php" class="flex items-center p-2 text-gray-500 rounded-lg hover:bg-[#D6F170] hover:text-black group">
-                            <i class="fa-solid fa-file-circle-plus w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white"></i>
+                            <i class="fa-solid fa-file-circle-plus w-5 h-5 text-gray-500 transition duration-75 group-hover:text-black"></i>
                             <span class="text-sm ms-3 whitespace-nowrap">Buat SPT</span>
                         </a>
                     </li>
                     <li>
                         <button type="button" class="flex items-center p-2 pr-3 rounded-lg hover:bg-[#D6F170] text-gray-500 hover:text-black group" aria-controls="dropdown-lp" data-collapse-toggle="dropdown-lp">
-                            <i class="fa-solid fa-file-circle-plus w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white"></i>
+                            <i class="fa-solid fa-file-circle-plus w-5 h-5 text-gray-500 transition duration-75 group-hover:text-black"></i>
                             <span class="text-sm ms-3 whitespace-nowrap pr-28">Laporan</span>
                             <svg class="w-3 h-3 text-gray-500 group-hover:text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
@@ -52,9 +56,9 @@
                         <ul id="dropdown-lp" class="hidden py-2 space-y-2 text-sm">
                             <li>
                                 <button type="button" class="flex items-center p-2 text-gray-500 rounded-lg hover:bg-[#D6F170] hover:text-black group" aria-controls="dropdown-uha" data-collapse-toggle="dropdown-uha">
-                                    <i class="fa-solid fa-file-pen w-5 h-5 text-gray-500 transition duration-75 group-hover:text-black dark:group-hover:text-white"></i>
+                                    <i class="fa-solid fa-file-pen w-5 h-5 text-gray-500 transition duration-75 group-hover:text-black"></i>
                                     <span class="text-gray-500 group-hover:text-black text-sm ms-3 whitespace-nowrap pr-20">Uang Harian</span>
-                                    <i class="fa-solid fa-angle-right w-3 h-3 text-gray-500 hover:text-black transition duration-75 group-hover:text-black dark:group-hover:text-white"></i>
+                                    <i class="fa-solid fa-angle-right w-3 h-3 text-gray-500 hover:text-black transition duration-75 group-hover:text-black"></i>
                                 </button>
                                 <ul id="dropdown-uha" class="hidden py-2 space-y-2 text-sm">
                                     <li>
@@ -67,9 +71,9 @@
                             </li>
                             <li>
                                 <button type="button" class="flex items-center p-2 text-gray-500 rounded-lg hover:bg-[#D6F170] hover:text-black group" aria-controls="dropdown-tr" data-collapse-toggle="dropdown-tr">
-                                    <i class="fa-solid fa-file-pen w-5 h-5 text-gray-500 transition duration-75 group-hover:text-black dark:group-hover:text-white"></i>
+                                    <i class="fa-solid fa-file-pen w-5 h-5 text-gray-500 transition duration-75 group-hover:text-black"></i>
                                     <span class="text-gray-500 group-hover:text-black text-sm ms-3 whitespace-nowrap pr-9">Biaya Transportasi</span>
-                                    <i class="fa-solid fa-angle-right w-3 h-3 text-gray-500 hover:text-black transition duration-75 group-hover:text-black dark:group-hover:text-white"></i>
+                                    <i class="fa-solid fa-angle-right w-3 h-3 text-gray-500 hover:text-black transition duration-75 group-hover:text-black"></i>
                                 </button>
                                 <ul id="dropdown-tr" class="hidden py-2 space-y-2 text-sm">
                                     <li>
@@ -88,19 +92,19 @@
                             </li>
                             <li>
                                 <a href="by_penginapan.php" class="flex items-center p-2 text-gray-500 rounded-lg hover:bg-[#D6F170] hover:text-black group">
-                                    <i class="fa-solid fa-file-pen w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white"></i>
+                                    <i class="fa-solid fa-file-pen w-5 h-5 text-gray-500 transition duration-75 group-hover:text-black"></i>
                                     <span class="text-sm ms-3 whitespace-nowrap">Biaya Penginapan</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="by_representasi.php" class="flex items-center p-2 text-gray-500 rounded-lg hover:bg-[#D6F170] hover:text-black group">
-                                    <i class="fa-solid fa-file-pen w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white"></i>
+                                    <i class="fa-solid fa-file-pen w-5 h-5 text-gray-500 transition duration-75 group-hover:text-black"></i>
                                     <span class="text-sm ms-3 whitespace-nowrap">Uang Representasi</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="cetak.php" class="flex items-center p-2 text-gray-500 rounded-lg hover:bg-[#D6F170] hover:text-black group">
-                                    <i class="fa-solid fa-print w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white"></i>
+                                    <i class="fa-solid fa-print w-5 h-5 text-gray-500 transition duration-75 group-hover:text-black"></i>
                                     <span class="text-sm ms-3 whitespace-nowrap">Cetak Data</span>
                                 </a>
                             </li>
@@ -146,11 +150,25 @@
                             </a>
                         </div>
                     </div>
+                    <?php
+                    // Query untuk menghitung jumlah pegawai
+                    $query_total = "SELECT COUNT(*) AS total FROM pegawai";
+                    $result_total = mysqli_query($koneksi, $query_total);
+
+                    // Ambil hasil dari query
+                    $total_pegawai = 0;
+                    if ($result_total) {
+                        $row_total = mysqli_fetch_assoc($result_total);
+                        $total_pegawai = $row_total['total'];
+                    }
+
+                    mysqli_close($koneksi);
+                    ?>
                     <div class="mb-10 w-64">
                         <div class="h-36 flex justify-center rounded-t-xl bg-[#93DB87] flex py-8">
                             <div class="text-white mt-8">
-                                <h1 class="text-4xl font-semibold">10</h1>
-                                <p>Pegawai</p>
+                                <h1 class="text-4xl font-semibold"><?php echo $total_pegawai; ?></h1>
+                                <p> Pegawai</p>
                             </div>
                             <div class="ml-4">
                                 <i class="fa-solid fa-users text-[#6d986a]/50 text-8xl"></i>
@@ -164,7 +182,7 @@
                     </div>
                 </div>
                 <h1 class="text-[#23212F] font-medium text-lg">Grafik SPPD Per-Bulan</h1>
-                <div class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800">
+                <div class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50">
                     ini buat grafik
                 </div>
             </div>
