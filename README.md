@@ -1,3 +1,3 @@
 # **Sistem Informasi Perjalanan Dinas**
 
-## Sedang dalam pengembangan
+Sedang dalam pengembangan
