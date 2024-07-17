@@ -1,3 +1,7 @@
+<?php
+include '../koneksi.php'
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -178,18 +182,32 @@
                             </a>
                         </div>
                     </div>
+                    <?php
+                    // Query untuk menghitung jumlah pegawai
+                    $query_total = "SELECT COUNT(*) AS total FROM pegawai";
+                    $result_total = mysqli_query($koneksi, $query_total);
+
+                    // Ambil hasil dari query
+                    $total_pegawai = 0;
+                    if ($result_total) {
+                        $row_total = mysqli_fetch_assoc($result_total);
+                        $total_pegawai = $row_total['total'];
+                    }
+
+                    mysqli_close($koneksi);
+                    ?>
                     <div class="mb-10 w-64">
                         <div class="h-36 flex justify-center rounded-t-xl bg-[#93DB87] flex py-8">
                             <div class="text-white mt-8">
-                                <h1 class="text-4xl font-semibold">10</h1>
-                                <p>Pegawai</p>
+                                <h1 class="text-4xl font-semibold"><?php echo $total_pegawai; ?></h1>
+                                <p> Pegawai</p>
                             </div>
                             <div class="ml-4">
                                 <i class="fa-solid fa-users text-[#6d986a]/50 text-8xl"></i>
                             </div>
                         </div>
                         <div class="bg-[#6d986a] text-center p-2 text-white rounded-b-xl">
-                            <a href="#">
+                            <a href="data_pegawai.php">
                                 <p>Info lebih lanjut > </p>
                             </a>
                         </div>

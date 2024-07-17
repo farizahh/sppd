@@ -162,64 +162,52 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600  text-center">
-                                        <th scope="row" class="px-3 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            1
-                                        </th>
-                                        <td class="px-3 py-4">
-                                            2222.2/2161/333.45
-                                        </td>
-                                        <td class="px-3 py-4 text-left">
-                                            1. Ersy Genius Nagari </br>
-                                            2. Farizah Farhana
-                                        </td>
-                                        <td class="px-3 py-4 ">
-                                            Malang
-                                        </td>
-                                        <td class="px-3 py-4">
-                                            05/07/2024
-                                        </td>
-                                        <td class="px-3 py-4">
-                                            05/07/2024
-                                        </td>
-                                        <td class="px-3 py-4 text-center">
-                                            <a href="#" class="font-medium bg-amber-400 hover:bg-amber-500 text-black p-2 rounded-md text-xs mr-2 text-center">
-                                                <i class="fa-solid fa-file-circle-check"></i>
-                                            </a>
-                                            <a href="#" class="font-medium bg-[#ff0000] hover:bg-red-800 text-[#ffdead] p-2 rounded-md text-xs">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr class="bg-white border-b hover:bg-gray-50 text-center">
-                                        <th scope="row" class="px-3 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                            2
-                                        </th>
-                                        <td class="px-3 py-4">
-                                            2222.2/2161/333.45
-                                        </td>
-                                        <td class="px-3 py-4 text-left">
-                                            1. Farizah Farhana </br>
-                                            2. Kesya Sakha
-                                        </td>
-                                        <td class="px-3 py-4">
-                                            Jakarta
-                                        </td>
-                                        <td class="px-3 py-4">
-                                            05/07/2024
-                                        </td>
-                                        <td class="px-3 py-4">
-                                            05/07/2024
-                                        </td>
-                                        <td class="px-3 py-4 text-center">
-                                            <a href="#" class="font-medium bg-amber-400 hover:bg-amber-500 text-black p-2 rounded-md text-xs mr-2">
-                                                <i class="fa-solid fa-file-circle-check"></i>
-                                            </a>
-                                            <a href="#" class="font-medium bg-[#ff0000] hover:bg-red-800 text-[#ffdead] p-2 rounded-md text-xs">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                <?php include 'koneksi.php';
+
+$query = "SELECT spt.kode_spt, pegawai.nama AS nama_pegawai, kota.nama_kota AS tujuan_kota, spt.tanggal_awal, spt.tanggal_akhir
+          FROM spt
+          JOIN pegawai ON spt.nip = pegawai.nip
+          JOIN kota ON spt.tujuan_kota = kota.kode_kota";
+
+$result = $koneksi->query($query);
+
+if ($result) {
+    if ($result->num_rows > 0) {
+        $no = 1;
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr class='bg-white border-b hover:bg-gray-50'>";
+            echo "<td class='px-6 py-3 text-center'>$no</td>";
+            echo "<td class='px-6 py-3 text-center'>" . $row['nama_pegawai'] . "</td>";
+            echo "<td class='px-6 py-3 text-center'>" . $row['tujuan_kota'] . "</td>";
+            echo "<td class='px-6 py-3 text-center'>" . $row['tanggal_awal'] . "</td>";
+            echo "<td class='px-6 py-3 text-center'>" . $row['tanggal_akhir'] . "</td>";
+            echo "<td class='px-6 py-3 text-center'>
+                    <a href='edit_spt.php?kode_spt=" . urlencode($row['kode_spt']) . "' class='font-medium bg-amber-400 hover:bg-amber-500 text-black p-2 rounded-md text-xs mr-2 text-center'>
+                        <i class='fa-solid fa-file-circle-check'></i>
+                    </a> 
+                    <a href='proses_delete_spt.php?delete=" . $row['kode_spt'] . "' onclick='return confirmDelete()' type='button' class='font-medium bg-[#ff0000] hover:bg-red-800 text-[#ffdead] p-2 rounded-md text-xs text-center'>
+                        <i class='fa-solid fa-trash'></i>   
+                    </a>
+                </td>";
+            echo "</tr>";
+            $no++;
+        }
+    } else {
+        echo "<tr><td colspan='6' class='text-center'>Tidak ada data</td></tr>";
+    }
+} else {
+    echo "<tr><td colspan='6' class='text-center'>Error: " . $koneksi->error . "</td></tr>";
+}
+
+$koneksi->close();
+?>
+
+<script>
+    function confirmDelete() {
+        return confirm('Apakah Anda Yakin Untuk Menghapus Data Ini?');
+    }
+</script>
+
                                 </tbody>
                             </table>
                         </div>
