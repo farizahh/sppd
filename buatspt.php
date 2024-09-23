@@ -1,3 +1,7 @@
+<?php
+include 'koneksi.php'
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -110,6 +114,30 @@
             </div>
         </aside>
 
+        <!-- <?php
+                // // Jumlah entri per halaman
+                // $batas = isset($_GET['batas']) ? (int)$_GET['batas'] : 10;
+
+                // // Mendapatkan halaman saat ini dari parameter URL, default ke halaman 1 jika tidak ada
+                // $halaman = isset($_GET['halaman']) ? (int)$_GET['halaman'] : 1;
+
+                // // Menghitung halaman awal dan kueri sesuai dengan halaman dan batas
+                // $halaman_awal = ($halaman > 1) ? ($halaman * $batas) - $batas : 0;
+
+                // // Kueri untuk mengambil jumlah total entri
+                // $query_total = "SELECT COUNT(*) as total FROM spt";
+                // $result_total = $koneksi->query($query_total);
+                // $row_total = $result_total->fetch_assoc();
+                // $total_entries = $row_total['total'];
+
+                // // Menghitung total halaman
+                // $total_halaman = ceil($total_entries / $batas);
+
+                // // Menghitung entri awal dan akhir untuk tampilan
+                // $start_entry = $halaman_awal + 1;
+                // $end_entry = min($halaman_awal + $batas, $total_entries);
+                ?> -->
+
         <div class="p-4 sm:ml-64">
             <div class="p-4 mt-14">
                 <h1 class="text-[#23212F] font-semibold text-2xl">Buat SPT</h1>
@@ -165,30 +193,37 @@
                                     <?php include 'koneksi.php';
 
                                     $query = "SELECT spt.kode_spt, pegawai.nama AS nama_pegawai, kota.nama_kota AS tujuan_kota, spt.tanggal_awal, spt.tanggal_akhir
-          FROM spt
-          JOIN pegawai ON spt.nip = pegawai.nip
-          JOIN kota ON spt.tujuan_kota = kota.kode_kota";
+                                            FROM spt
+                                            JOIN pegawai ON spt.nip = pegawai.nip
+                                            JOIN kota ON spt.tujuan_kota = kota.kode_kota";
 
                                     $result = $koneksi->query($query);
 
                                     if ($result) {
                                         if ($result->num_rows > 0) {
-                                            $no = 1;
+                                            // Hitung nomor urut awal untuk halaman saat ini
+                                            $nomor = 1;
+
+                                            // // Menghitung batas atas dan bawah entri yang ditampilkan
+                                            // $start_entry = $halaman_awal + 1;
+                                            // $end_entry = min($halaman_awal + $batas, $jumlah_data);
+
+                                            // Loop through the result set and display data
                                             while ($row = $result->fetch_assoc()) {
                                                 echo "<tr class='bg-white border-b hover:bg-gray-50'>";
-                                                echo "<td class='px-6 py-3 text-center'>$no</td>";
+                                                echo "<td class='px-6 py-3 text-center'>" . $nomor++ . "</td>";
                                                 echo "<td class='px-6 py-3 text-center'>" . $row['nama_pegawai'] . "</td>";
                                                 echo "<td class='px-6 py-3 text-center'>" . $row['tujuan_kota'] . "</td>";
                                                 echo "<td class='px-6 py-3 text-center'>" . $row['tanggal_awal'] . "</td>";
                                                 echo "<td class='px-6 py-3 text-center'>" . $row['tanggal_akhir'] . "</td>";
                                                 echo "<td class='px-6 py-3 text-center'>
-                    <a href='edit_spt.php?kode_spt=" . urlencode($row['kode_spt']) . "' class='font-medium bg-amber-400 hover:bg-amber-500 text-black p-2 rounded-md text-xs mr-2 text-center'>
-                        <i class='fa-solid fa-file-circle-check'></i>
-                    </a> 
-                    <a href='proses_delete_spt.php?delete=" . $row['kode_spt'] . "' onclick='return confirmDelete()' type='button' class='font-medium bg-[#ff0000] hover:bg-red-800 text-[#ffdead] p-2 rounded-md text-xs text-center'>
-                        <i class='fa-solid fa-trash'></i>   
-                    </a>
-                </td>";
+                                                        <a href='edit_spt.php?kode_spt=" . urlencode($row['kode_spt']) . "' class='font-medium bg-amber-400 hover:bg-amber-500 text-black p-2 rounded-md text-xs mr-2 text-center'>
+                                                            <i class='fa-solid fa-file-circle-check'></i>
+                                                        </a> 
+                                                        <a href='proses_delete_spt.php?delete=" . $row['kode_spt'] . "' onclick='return confirmDelete()' type='button' class='font-medium bg-[#ff0000] hover:bg-red-800 text-[#ffdead] p-2 rounded-md text-xs text-center'>
+                                                            <i class='fa-solid fa-trash'></i>   
+                                                        </a>
+                                                    </td>";
                                                 echo "</tr>";
                                                 $no++;
                                             }

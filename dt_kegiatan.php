@@ -5,7 +5,6 @@ include 'koneksi.php'
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,428 +18,530 @@ include 'koneksi.php'
 
 <body>
     <section id="sidebar">
-        <?php include "navbar.php"; ?>
+        <section id="sidebar">
+            <?php include "navbar.php"; ?>
 
-        <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-            <div class="h-full px-3 py-4 overflow-y-auto bg-[#102E48]">
-                <a href="user.php" class="flex ms-2 md:me-24 mb-5">
-                    <img src="assets/img/logo.png" class="h-12 me-3" />
-                    <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">SPPD</span>
-                </a>
-                <div class="bg-[#276EAC4D] mb-2 py-2 px-5 text-center">
-                    <p class="font-semibold text-xs text-white/50">MENU TAMBAH SPT</p>
+            <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+                <div class="h-full px-3 py-4 overflow-y-auto bg-[#102E48]">
+                    <a href="user.php" class="flex ms-2 md:me-24 mb-5">
+                        <img src="assets/img/logo.png" class="h-12 me-3" />
+                        <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">SPPD</span>
+                    </a>
+                    <div class="bg-[#276EAC4D] mb-2 py-2 px-5 text-center">
+                        <p class="font-semibold text-xs text-white/50">MENU TAMBAH SPT</p>
+                    </div>
+                    <ul class="space-y-2 font-medium">
+                        <li>
+                            <a href="dt_pegawai.php" class="flex items-center p-2 text-gray-500 rounded-lg hover:bg-[#D6F170] hover:text-black group">
+                                <i class="fa-solid fa-file-circle-plus w-5 h-5 text-gray-500 transition duration-75 group-hover:text-black"></i>
+                                <span class="flex-1 ms-3 whitespace-nowrap text-sm">Data Pegawai</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="dt_kegiatan.php" class="flex items-center p-2 text-black rounded-lg hover:bg-[#D6F170] hover:text-black group active">
+                                <i class="fa-solid fa-file-circle-plus w-5 h-5 text-black transition duration-75 group-hover:text-black"></i>
+                                <span class="flex-1 ms-3 whitespace-nowrap text-sm">Data Kegiatan</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="s_cetak.php" class="flex items-center p-2 text-gray-500 rounded-lg hover:bg-[#D6F170] hover:text-black group">
+                                <i class="fa-solid fa-print w-5 h-5 text-gray-500 transition duration-75 group-hover:text-black"></i>
+                                <span class="flex-1 ms-3 whitespace-nowrap text-sm">Cetak Data</span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-                <ul class="space-y-2 font-medium">
-                    <li>
-                        <a href="dt_pegawai.php" class="flex items-center p-2 text-gray-500 rounded-lg hover:bg-[#D6F170] hover:text-black group">
-                            <i class="fa-solid fa-file-circle-plus w-5 h-5 text-gray-500 transition duration-75 group-hover:text-black"></i>
-                            <span class="flex-1 ms-3 whitespace-nowrap text-sm">Data Pegawai</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="dt_kegiatan.php" class="flex items-center p-2 text-black rounded-lg hover:bg-[#D6F170] hover:text-black group active">
-                            <i class="fa-solid fa-file-circle-plus w-5 h-5 text-black transition duration-75 group-hover:text-black"></i>
-                            <span class="flex-1 ms-3 whitespace-nowrap text-sm">Data Kegiatan</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="s_cetak.php" class="flex items-center p-2 text-gray-500 rounded-lg hover:bg-[#D6F170] hover:text-black group">
-                            <i class="fa-solid fa-print w-5 h-5 text-gray-500 transition duration-75 group-hover:text-black"></i>
-                            <span class="flex-1 ms-3 whitespace-nowrap text-sm">Cetak Data</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </aside>
+            </aside>
 
-        <div class="p-4 sm:ml-64">
-            <div class="p-4 mt-14">
-                <h1 class="bg-gradient-to-r from-sky-900 to-sky-700 text-white font-medium text-md px-5 py-3 rounded-xl">Data Kegiatan</h1>
-                <form action="" method="post">
-                    <div class="mt-5 mb-6 flex">
-                        <div class="md:w-1/6">
-                            <label for="kode_provinsi" class="block text-sm font-medium text-[#102E48] mt-2">Provinsi </label>
-                        </div>
-                        <div class="md:w-5/6">
-                            <select id="kode_provinsi" name="kode_provinsi" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2 placeholder-gray-900" required>
-                                <option selected disabled>- Pilih Provinsi -</option>
-                                <?php
-                                $query = "SELECT * FROM provinsi";
-                                $result = $koneksi->query($query);
-                                if ($result->num_rows > 0) {
-                                    while ($row = $result->fetch_assoc()) {
-                                        echo "<option value='" . $row["kode_provinsi"] . "'>" . $row["nama_provinsi"] . "</option>";
-                                    }
-                                }
-                                ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="mt-3 mb-6 flex">
-                        <div class="md:w-1/6">
-                            <label for="kota" class="block text-sm font-medium text-[#102E48] mt-2">Kota/Kabupaten</label>
-                        </div>
-                        <div class="md:w-5/6">
-                            <select id="kota" name="kota" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2 placeholder-gray-900" required>
-                                <option selected disabled>- Pilih Kota/Kabupaten -</option>
-                                <?php
-                                $query = "SELECT * FROM kota";
-                                $result = $koneksi->query($query);
-                                if ($result->num_rows > 0) {
-                                    while ($row = $result->fetch_assoc()) {
-                                        echo "<option value='" .
-                                            $row["kode_kota"] .
-                                            "'>" .
-                                            $row["nama_kota"] .
-                                            "</option>";
-                                    }
-                                }
-                                ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="mt-3 mb-6 flex">
-                        <div class="md:w-1/6">
-                            <label for="lokasi" class="block text-sm font-medium text-[#102E48] mt-2">Lokasi </label>
-                        </div>
-                        <div class="md:w-5/6">
-                            <input type="text" id="lokasi" name="lokasi" placeholder="Masukkan lokasi" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2" />
-                        </div>
-                    </div>
-                    <div class="mt-3 mb-6 flex">
-                        <div class="md:w-2/6">
-                            <label for="tanggal_berangkat" class="block text-sm font-medium text-[#102E48] mt-2">Tanggal Berangkat </label>
-                        </div>
-                        <div class="md:w-4/6">
-                            <input type="date" id="tanggal_berangkat" name="tanggal_berangkat" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2" />
-                        </div>
-                        <div class="md:w-2/6 ml-3">
-                            <label for="tanggal_kembali" class="block text-sm font-medium text-[#102E48] mt-2">Tanggal Kembali </label>
-                        </div>
-                        <div class="md:w-4/6">
-                            <input type="date" id="tanggal_kembali" name="tanggal_kembali" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2" />
-                        </div>
-                    </div>
-                    <div class="mt-3 mb-6 flex">
-                        <div class="md:w-1/6">
-                            <label for="kategori_dinas" class="block text-sm font-medium text-[#102E48] mt-2">Kategori Dinas </label>
-                        </div>
-                        <div class="md:w-5/6">
-                            <select id="kategori_dinas" name="kategori_dinas" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2">
-                                <option selected disabled>- Pilih Kategori Dinas -</option>
-                                <option value="Perjalanan dinas dalam negeri">Perjalanan Dinas Dalam Negeri</option>
-                                <option value="Kegiatan rapat">Kegiatan Rapat</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="mt-3 mb-6 flex">
-                        <div class="md:w-1/6">
-                            <label for="hotel_name" class="block text-sm font-medium text-[#102E48] mt-2">Nama Hotel</label>
-                        </div>
-                        <div class="md:w-5/6">
-                            <input type="text" id="hotel_name" name="hotel_name" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2" placeholder="Masukkan nama hotel" />
-                        </div>
-                    </div>
-
-                    <!-- Lama Menginap -->
-                    <div class="mt-3 mb-6 flex">
-                        <div class="md:w-1/6">
-                            <label for="hotel_days" class="block text-sm font-medium text-[#102E48] mt-2">Lama Menginap</label>
-                        </div>
-                        <div class="md:w-5/6">
-                            <input type="number" id="hotel_days" name="hotel_days" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2" placeholder="Masukkan lama menginap" onchange="calculateTotal()" />
-                        </div>
-                    </div>
-
-                    <!-- Harga Hotel Per Malam -->
-                    <div class="mt-3 mb-6 flex">
-                        <div class="md:w-1/6">
-                            <label for="hotel_price" class="block text-sm font-medium text-[#102E48] mt-2">Harga Hotel Per Malam</label>
-                        </div>
-                        <div class="md:w-5/6">
-                            <input type="number" id="hotel_price" name="hotel_price" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2" placeholder="Masukkan harga hotel per malam" onchange="calculateTotal()" />
-                        </div>
-                    </div>
-
-                    <!-- Transportasi -->
-                    <div class="mt-3 mb-6 flex">
-                        <div class="md:w-1/6">
-                            <label for="transportasi" class="block text-sm font-medium text-[#102E48] mt-2">Transportasi</label>
-                        </div>
-                        <div class="md:w-5/6">
-                            <select id="transportasi" name="transportasi" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2" onchange="showTransportOptions(this)">
-                                <option value="">Pilih Transportasi</option>
-                                <option value="pesawat">Pesawat</option>
-                                <option value="taksi">Taksi</option>
-                                <option value="oneway">Oneway</option>
-                                <option value="sewa_kendaraan">Sewa Kendaraan</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Opsi Pesawat -->
-                    <div id="pesawat_options" class="hidden">
-                        <div class="mt-3 mb-6 flex">
+            <div class="p-4 sm:ml-64">
+                <div class="p-4 mt-14">
+                    <h1 class="bg-gradient-to-r from-sky-900 to-sky-700 text-white font-medium text-md px-5 py-3 rounded-xl">Data Kegiatan</h1>
+                    <form action="" method="post">
+                        <div class="mt-5 mb-6 flex">
                             <div class="md:w-1/6">
-                                <label for="pesawat_kelas" class="block text-sm font-medium text-[#102E48] mt-2">Kelas Pesawat</label>
+                                <label for="kode_provinsi" class="block text-sm font-medium text-[#102E48] mt-2">Provinsi </label>
                             </div>
                             <div class="md:w-5/6">
-                                <select id="pesawat_kelas" name="pesawat_kelas" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2">
-                                    <option value="">Pilih Kelas</option>
-                                    <option value="ekonomi">Ekonomi</option>
-                                    <option value="bisnis">Bisnis</option>
-                                    <option value="first_class">First Class</option>
+                                <select id="kode_provinsi" name="kode_provinsi" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2 placeholder-gray-900" required>
+                                    <option selected disabled>- Pilih Provinsi -</option>
+                                    <?php
+                                    $query = "SELECT * FROM provinsi";
+                                    $result = $koneksi->query($query);
+                                    if ($result->num_rows > 0) {
+                                        while ($row = $result->fetch_assoc()) {
+                                            echo "<option value='" . $row["kode_provinsi"] . "'>" . $row["nama_provinsi"] . "</option>";
+                                        }
+                                    }
+                                    ?>
                                 </select>
                             </div>
                         </div>
                         <div class="mt-3 mb-6 flex">
                             <div class="md:w-1/6">
-                                <label for="pesawat_harga" class="block text-sm font-medium text-[#102E48] mt-2">Harga Tiket Pesawat</label>
+                                <label for="kota" class="block text-sm font-medium text-[#102E48] mt-2">Kota/Kabupaten</label>
                             </div>
                             <div class="md:w-5/6">
-                                <input type="number" id="pesawat_harga" name="pesawat_harga" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2" placeholder="Masukkan harga tiket pesawat" onchange="calculateTotal()" />
+                                <select id="kota" name="kota" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2 placeholder-gray-900" required>
+                                    <option selected disabled>- Pilih Kota/Kabupaten -</option>
+                                    <?php
+                                    $query = "SELECT * FROM kota";
+                                    $result = $koneksi->query($query);
+                                    if ($result->num_rows > 0) {
+                                        while ($row = $result->fetch_assoc()) {
+                                            echo "<option value='" .
+                                                $row["kode_kota"] .
+                                                "'>" .
+                                                $row["nama_kota"] .
+                                                "</option>";
+                                        }
+                                    }
+                                    ?>
+                                </select>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Opsi Taksi -->
-                    <div id="taksi_options" class="hidden">
                         <div class="mt-3 mb-6 flex">
                             <div class="md:w-1/6">
-                                <label for="taksi_harga" class="block text-sm font-medium text-[#102E48] mt-2">Biaya Taksi</label>
+                                <label for="lokasi" class="block text-sm font-medium text-[#102E48] mt-2">Lokasi </label>
                             </div>
                             <div class="md:w-5/6">
-                                <input type="number" id="taksi_harga" name="taksi_harga" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2" placeholder="Masukkan biaya taksi" onchange="calculateTotal()" />
+                                <input type="text" id="lokasi" name="lokasi" placeholder="Masukkan lokasi" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2" />
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Opsi Oneway -->
-                    <div id="oneway_options" class="hidden">
+                        <div class="mt-3 mb-6 flex">
+                            <div class="md:w-2/6">
+                                <label for="tanggal_berangkat" class="block text-sm font-medium text-[#102E48] mt-2">Tanggal Berangkat </label>
+                            </div>
+                            <div class="md:w-4/6">
+                                <input type="date" id="tanggal_berangkat" name="tanggal_berangkat" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2" />
+                            </div>
+                            <div class="md:w-2/6 ml-3">
+                                <label for="tanggal_kembali" class="block text-sm font-medium text-[#102E48] mt-2">Tanggal Kembali </label>
+                            </div>
+                            <div class="md:w-4/6">
+                                <input type="date" id="tanggal_kembali" name="tanggal_kembali" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2" />
+                            </div>
+                        </div>
                         <div class="mt-3 mb-6 flex">
                             <div class="md:w-1/6">
-                                <label for="oneway_harga" class="block text-sm font-medium text-[#102E48] mt-2">Biaya Oneway</label>
+                                <label for="kategori_dinas" class="block text-sm font-medium text-[#102E48] mt-2">Kategori Dinas </label>
                             </div>
                             <div class="md:w-5/6">
-                                <input type="number" id="oneway_harga" name="oneway_harga" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2" placeholder="Masukkan biaya oneway" onchange="calculateTotal()" />
+                                <select id="kategori_dinas" name="kategori_dinas" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2">
+                                    <option selected disabled>- Pilih Kategori Dinas -</option>
+                                    <option value="Perjalanan dinas dalam negeri">Perjalanan Dinas Dalam Negeri</option>
+                                    <option value="Kegiatan rapat">Kegiatan Rapat</option>
+                                </select>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Opsi Sewa Kendaraan -->
-                    <div id="sewa_kendaraan_options" class="hidden">
                         <div class="mt-3 mb-6 flex">
                             <div class="md:w-1/6">
-                                <label for="sewa_kendaraan_harga" class="block text-sm font-medium text-[#102E48] mt-2">Biaya Sewa Kendaraan</label>
+                                <label for="hotel_name" class="block text-sm font-medium text-[#102E48] mt-2">Nama Hotel</label>
                             </div>
                             <div class="md:w-5/6">
-                                <input type="number" id="sewa_kendaraan_harga" name="sewa_kendaraan_harga" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2" placeholder="Masukkan biaya sewa kendaraan" onchange="calculateTotal()" />
+                                <input type="text" id="hotel_name" name="hotel_name" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2" placeholder="Masukkan nama hotel" />
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Transportasi Tambahan -->
-                    <div id="additional_transportation"></div>
-
-                    <!-- Tambah Transportasi -->
-                    <div class="mt-3 mb-6">
-                        <button type="button" class="px-4 py-2 bg-blue-500  text-sm text-white rounded-lg" onclick="addTransportasi()">Tambah Transportasi</button>
-                    </div>
-
-                    <!-- Total -->
-                    <div class="mt-3 mb-6 flex">
-                        <div class="md:w-1/6">
-                            <label for="total" class="block text-sm font-medium text-[#102E48] mt-2">Total</label>
+                        <!-- Lama Menginap -->
+                        <div class="mt-3 mb-6 flex">
+                            <div class="md:w-1/6">
+                                <label for="hotelNights" class="block text-sm font-medium text-[#102E48] mt-2">Lama Menginap</label>
+                            </div>
+                            <div class="md:w-5/6">
+                                <input type="number" id="hotelNights" name="lamaMenginap" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2" placeholder="Masukkan lama menginap" required oninput="calculateTotal()" />
+                            </div>
                         </div>
-                        <div class="md:w-5/6">
-                            <input type="text" id="total_display" name="total_display" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2" readonly />
-                            <input type="hidden" id="total" name="total" />
+
+                        <!-- Harga Hotel Per Malam -->
+                        <div class="mt-3 mb-6 flex">
+                            <div class="md:w-1/6">
+                                <label for="hotelPrice" class="block text-sm font-medium text-[#102E48] mt-2">Harga Hotel Per Malam</label>
+                            </div>
+                            <div class="md:w-5/6">
+                                <input type="number" id="hotelPrice" name="hargaHotel" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2" placeholder="Masukkan harga hotel per malam" required oninput="calculateTotal()" />
+                            </div>
                         </div>
-                    </div>
+
+                        <!-- Transportasi -->
+                        <div class="mt-3 mb-6 flex">
+                            <div class="md:w-1/6">
+                                <label for="transportasi" class="block text-sm font-medium text-[#102E48] mt-2">Transportasi</label>
+                            </div>
+                            <div class="md:w-5/6">
+                                <select id="transportasi" name="transportasi[]" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2" onchange="showMainTransportFields()">
+                                    <option value="">Pilih Transportasi</option>
+                                    <option value="pesawat">Pesawat</option>
+                                    <option value="taksi">Taksi</option>
+                                    <option value="oneWay">One Way</option>
+                                    <option value="sewaKendaraan">Sewa Kendaraan</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div id="inputPesawat" class="hidden">
+                            <div class="mt-3 mb-6 flex flex-wrap">
+                                <div class="md:w-1/6">
+                                    <label for="kelasPenerbangan" class="block text-sm font-medium text-[#102E48] mt-2">Kelas Penerbangan</label>
+                                </div>
+                                <div class="md:w-5/6">
+                                    <select id="kelasPenerbangan" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2">
+                                        <option value="ekonomi">Ekonomi</option>
+                                        <option value="bisnis">Bisnis</option>
+                                        <option value="first">First Class</option>
+                                    </select>
+                                </div>
+                                <br><br>
+                                <div class="md:w-1/6">
+                                    <label for="hargaTiketPesawat" class="block text-sm font-medium text-[#102E48] mt-2">Harga Tiket</label>
+                                </div>
+                                <div class="md:w-5/6">
+                                    <input type="number" id="hargaTiketPesawat" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hidden" id="inputTaksi">
+                            <div class="mt-3 mb-6 flex">
+                                <div class="md:w-1/6">
+                                    <label for="hargaTaksi" class="block text-sm font-medium text-[#102E48] mt-2">Harga Taksi:</label>
+                                </div>
+                                <div class="md:w-5/6">
+                                    <input type="number" id="hargaTaksi" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hidden" id="inputOneway">
+                            <div class="mt-3 mb-6 flex">
+                                <div class="md:w-1/6">
+                                    <label for="hargaOneway" class="block text-sm font-medium text-[#102E48] mt-2">Harga One Way:</label>
+                                </div>
+                                <div class="md:w-5/6">
+                                    <input type="number" id="hargaOneway" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hidden" id="inputSewa">
+                            <div class="mt-3 mb-6 flex">
+                                <div class="md:w-1/6">
+                                    <label for="hargaSewa" class="block text-sm font-medium text-[#102E48] mt-2">Harga Sewa Kendaraan</label>
+                                </div>
+                                <div class="md:w-5/6">
+                                    <input type="number" id="hargaSewa" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="mainTransportDetails" class="details mb-4"></div>
+                        <div id="transportContainer"></div>
+
+                        <div class="mt-3 mb-6">
+                            <button type="button" class="px-4 py-2 bg-blue-500 text-sm text-white rounded-lg" onclick="addTransportField()">Tambah Transportasi</button>
+                        </div>
+
+                        <!-- Total -->
+                        <div class="mt-3 mb-6 flex">
+                            <div class="md:w-1/6">
+                                <label for="totalCost" class="block text-sm font-medium text-[#102E48] mt-2">Total Biaya</label>
+                            </div>
+                            <div class="md:w-5/6">
+                                <input type="text" id="totalCost" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2" disabled />
+                            </div>
+                        </div>
 
 
-                    <div class="mt-3 mb-6 flex">
-                        <div class="md:w-1/6">
-                            <label for="keterangan" class="block text-sm font-medium text-[#102E48] mt-2">Keterangan </label>
-                        </div>
-                        <div class="md:w-5/6">
-                            <input type="text" id="keterangan" name="keterangan" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2" />
-                        </div>
-                    </div>
 
-                    <div class="mt-3 mb-6 flex">
-                        <div class="md:w-1/6">
-                            <label for="penanggung_jawab" class="block text-sm font-medium text-[#102E48] mt-2">Penanggung Jawab </label>
+                        <div class="mt-3 mb-6 flex">
+                            <div class="md:w-1/6">
+                                <label for="keterangan" class="block text-sm font-medium text-[#102E48] mt-2">Keterangan </label>
+                            </div>
+                            <div class="md:w-5/6">
+                                <input type="text" id="keterangan" name="keterangan" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2" />
+                            </div>
                         </div>
-                        <div class="md:w-5/6">
-                            <select id="penanggung_jawab" name="penanggung_jawab" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2">
-                                <option selected disabled>- Pilih Penanggung Jawab -</option>
-                                <option value="kesya_sakha">Farizah Farhana</option>
-                                <option value="ersy_genius">Ersy Genius</option>
-                            </select>
-                        </div>
-                    </div>
 
-                    <!-- Submit -->
-                    <div class="mt-3 mb-14 flex float-right">
-                        <button type="submit" class="px-8 py-2 bg-green-500 text-white text-sm rounded-lg mr-3">Submit</button>
-                        <a href="dt_pegawai.php" class="inline-block px-8 py-2 font-semibold text-sm text-gray-800 transition duration-200 bg-white border border-gray-300 rounded-lg shadow-md hover:bg-gray-100 focus:ring focus:outline-none">Kembali</a>
-                    </div>
-                </form>
+                        <div class="mt-3 mb-6 flex">
+                            <div class="md:w-1/6">
+                                <label for="penanggung_jawab" class="block text-sm font-medium text-[#102E48] mt-2">Penanggung Jawab </label>
+                            </div>
+                            <div class="md:w-5/6">
+                                <select id="penanggung_jawab" name="penanggung_jawab" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2">
+                                    <option selected disabled>- Pilih Penanggung Jawab -</option>
+                                    <option value="kesya_sakha">Farizah Farhana</option>
+                                    <option value="ersy_genius">Ersy Genius</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="mt-3 mb-14 flex float-right">
+                            <button type="submit" class="px-8 py-2 bg-green-500 text-white text-sm rounded-lg mr-3">Submit</button>
+                            <a href="dt_pegawai.php" class="inline-block px-8 py-2 font-semibold text-sm text-gray-800 transition duration-200 bg-white border border-gray-300 rounded-lg shadow-md hover:bg-gray-100 focus:ring focus:outline-none">Kembali</a>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="footer">
-        <?php include "footer.php"; ?>
-    </section>
+        <section id="footer">
+            <?php include "footer.php"; ?>
+        </section>
 
-    <script>
-        function calculateTotal() {
-            const hotelDays = parseFloat(document.getElementById('hotel_days').value) || 0;
-            const hotelPrice = parseFloat(document.getElementById('hotel_price').value) || 0;
+        <script>
+            function calculateTotal() {
+                // Ambil nilai dari input hotel
+                const hotelPrice = parseFloat(document.getElementById("hotelPrice").value) || 0;
+                const hotelNights = parseInt(document.getElementById("hotelNights").value) || 0;
 
-            const pesawatPrice = parseFloat(document.getElementById('pesawat_harga').value) || 0;
-            const taksiPrice = parseFloat(document.getElementById('taksi_harga').value) || 0;
-            const onewayPrice = parseFloat(document.getElementById('oneway_harga').value) || 0;
-            const sewaKendaraanPrice = parseFloat(document.getElementById('sewa_kendaraan_harga').value) || 0;
+                // Hitung total biaya hotel
+                const totalHotel = hotelPrice * hotelNights;
 
-            const additionalTransportations = document.querySelectorAll('[name^="additional_transport_price_"]');
-            let additionalTotal = 0;
-            additionalTransportations.forEach(input => {
-                additionalTotal += parseFloat(input.value) || 0;
-            });
+                // Ambil harga transportasi
+                const pilihanTransportasi = document.getElementById('transportasi').value;
+                let totalTransport = 0;
 
-            const total = (hotelDays * hotelPrice) + pesawatPrice + taksiPrice + onewayPrice + sewaKendaraanPrice + additionalTotal;
-            document.getElementById('total').value = total;
-            document.getElementById('total_display').value = total.toLocaleString('id-ID', {
-                style: 'currency',
-                currency: 'IDR'
-            });
-        }
+                if (pilihanTransportasi === "pesawat") {
+                    const hargaTiketPesawat = parseFloat(document.getElementById('hargaTiketPesawat').value) || 0;
+                    totalTransport = hargaTiketPesawat;
+                } else if (pilihanTransportasi === "taksi") {
+                    const hargaTaksi = parseFloat(document.getElementById('hargaTaksi').value) || 0;
+                    totalTransport = hargaTaksi;
+                } else if (pilihanTransportasi === "oneWay") {
+                    const hargaOneway = parseFloat(document.getElementById('hargaOneway').value) || 0;
+                    totalTransport = hargaOneway;
+                } else if (pilihanTransportasi === "sewaKendaraan") {
+                    const hargaSewa = parseFloat(document.getElementById('hargaSewa').value) || 0;
+                    totalTransport = hargaSewa;
+                }
 
-        function showTransportOptions(select) {
-            const transportasi = select.value;
-            const options = {
-                pesawat: 'pesawat_options',
-                taksi: 'taksi_options',
-                oneway: 'oneway_options',
-                sewa_kendaraan: 'sewa_kendaraan_options'
-            };
+                // Total keseluruhan biaya hotel dan transport
+                const total = totalHotel + totalTransport;
 
-            for (let key in options) {
-                document.getElementById(options[key]).classList.add('hidden');
+                // Tampilkan total dalam format IDR
+                document.getElementById("totalCost").value = total.toLocaleString('id-ID', {
+                    style: 'currency',
+                    currency: 'IDR'
+                });
             }
 
-            if (options[transportasi]) {
-                document.getElementById(options[transportasi]).classList.remove('hidden');
+            // Tambahkan event listener untuk input
+            document.getElementById('hotelNights').addEventListener('input', calculateTotal);
+            document.getElementById('hotelPrice').addEventListener('input', calculateTotal);
+            document.getElementById('transportasi').addEventListener('change', function() {
+                const pilihanTransportasi = this.value;
+
+                // Sembunyikan semua input transportasi
+                document.getElementById('inputPesawat').style.display = 'none';
+                document.getElementById('inputTaksi').style.display = 'none';
+                document.getElementById('inputOneway').style.display = 'none';
+                document.getElementById('inputSewa').style.display = 'none';
+
+                // Tampilkan input yang sesuai
+                if (pilihanTransportasi === "pesawat") {
+                    document.getElementById('inputPesawat').style.display = 'block';
+                } else if (pilihanTransportasi === "taksi") {
+                    document.getElementById('inputTaksi').style.display = 'block';
+                } else if (pilihanTransportasi === "oneWay") {
+                    document.getElementById('inputOneway').style.display = 'block';
+                } else if (pilihanTransportasi === "sewaKendaraan") {
+                    document.getElementById('inputSewa').style.display = 'block';
+                }
+
+                calculateTotal(); // Hitung total saat transportasi berubah
+            });
+
+            // Tambahkan event listener untuk harga tiket, harga taksi, harga oneway, dan harga sewa
+            document.getElementById('hargaTiketPesawat').addEventListener('input', calculateTotal);
+            document.getElementById('hargaTaksi').addEventListener('input', calculateTotal);
+            document.getElementById('hargaOneway').addEventListener('input', calculateTotal);
+            document.getElementById('hargaSewa').addEventListener('input', calculateTotal);
+
+            // Di dalam fungsi calculateTotal, setelah mendeklarasikan variabel hargaTiketPesawat
+            const kelasPenerbangan = document.getElementById('kelasPenerbangan').value;
+
+            const hargaTiketPesawat = (parseFloat(document.getElementById('hargaTiketPesawat').value) || 0) + adjustment;
+
+            function addTransportField() {
+                var transportContainer = document.getElementById("transportContainer");
+                var transportWrapper = document.createElement("div");
+
+                var transportSelectWrapper = document.createElement("div");
+                transportSelectWrapper.className = "flex mb-2";
+
+                var transportSelectLabel = document.createElement("div");
+                transportSelectLabel.textContent = "Pilih Transportasi:";
+                transportSelectLabel.className = "md:w-1/6 block text-sm font-medium text-[#102E48] mt-2";
+
+                var transportSelect = document.createElement("select");
+                transportSelect.name = "transportasi[]";
+                transportSelect.className = "md:w-5/6 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2";
+
+                // Options for transportation selection
+                var options = [{
+                        value: "",
+                        text: "Pilih Transportasi"
+                    },
+                    {
+                        value: "pesawat",
+                        text: "Pesawat"
+                    },
+                    {
+                        value: "taksi",
+                        text: "Taksi"
+                    },
+                    {
+                        value: "oneWay",
+                        text: "One Way"
+                    },
+                    {
+                        value: "sewaKendaraan",
+                        text: "Sewa Kendaraan"
+                    }
+                ];
+
+                options.forEach(function(option) {
+                    var opt = document.createElement("option");
+                    opt.value = option.value;
+                    opt.textContent = option.text;
+                    transportSelect.appendChild(opt);
+                });
+
+                // Div for transport details
+                var detailsDiv = document.createElement("div");
+                detailsDiv.className = "details";
+
+                // Change event for transport selection
+                transportSelect.addEventListener("change", function() {
+                    // Clear previous details
+                    while (transportWrapper.lastChild && transportWrapper.lastChild !== transportSelectWrapper) {
+                        transportWrapper.removeChild(transportWrapper.lastChild);
+                    }
+
+                    transportWrapper.appendChild(detailsDiv);
+                    showAdditionalFields(this, detailsDiv);
+                });
+
+                transportSelectWrapper.appendChild(transportSelectLabel);
+                transportSelectWrapper.appendChild(transportSelect);
+                transportWrapper.appendChild(transportSelectWrapper);
+                transportContainer.appendChild(transportWrapper);
             }
-        }
 
-        function addTransportasi() {
-            const container = document.getElementById('additional_transportation');
+            document.getElementById("tambahTransportasiButton").addEventListener("click", addTransportField);
 
-            const div = document.createElement('div');
-            div.classList.add('mt-3', 'mb-6', 'flex');
+            function showAdditionalFields(select, detailsDiv) {
+                detailsDiv.innerHTML = ""; // Clear previous content
 
-            const label = document.createElement('div');
-            label.classList.add('md:w-1/6');
-            const labelElement = document.createElement('label');
-            labelElement.classList.add('block', 'text-sm', 'font-medium', 'text-[#102E48]', 'mt-2');
-            labelElement.innerText = 'Pilih Transportasi';
-            label.appendChild(labelElement);
+                if (select.value === "pesawat") {
+                    createAirlineClassField(detailsDiv);
+                    createInputField(detailsDiv, "Harga Tiket:", "hargaPesawat[]", "number", true);
+                } else if (select.value === "taksi") {
+                    createInputField(detailsDiv, "Tarif Taksi per KM:", "hargaTaksi[]", "number", true);
+                } else if (select.value === "oneWay") {
+                    createInputField(detailsDiv, "Harga One Way:", "hargaOneWay[]", "number", true);
+                } else if (select.value === "sewaKendaraan") {
+                    createInputField(detailsDiv, "Tipe Kendaraan:", "tipeKendaraan[]", "text");
+                    createInputField(detailsDiv, "Harga Sewa:", "hargaSewa[]", "number", true);
+                }
 
-            const inputContainer = document.createElement('div');
-            inputContainer.classList.add('md:w-5/6');
+                // Recalculate total on input change
+                detailsDiv.addEventListener('input', calculateTotal);
+            }
 
-            const select = document.createElement('select');
-            select.name = 'additional_transport';
-            select.classList.add('bg-white', 'border', 'border-gray-300', 'text-gray-900', 'text-sm', 'rounded-lg', 'focus:ring-blue-500', 'focus:border-blue-500', 'w-full', 'p-2');
-            select.onchange = function() {
-                showAdditionalTransportOptions(select, div);
-            };
+            function showMainTransportFields() {
+                const pilihanTransportasi = document.getElementById('transportasi').value;
 
-            const optionDefault = document.createElement('option');
-            optionDefault.value = '';
-            optionDefault.innerText = 'Pilih Transportasi';
-            select.appendChild(optionDefault);
+                // Sembunyikan semua input transportasi
+                document.getElementById('inputPesawat').classList.add('hidden');
+                document.getElementById('inputPesawatHarga').classList.add('hidden');
+                document.getElementById('inputTaksi').classList.add('hidden');
+                document.getElementById('inputOneway').classList.add('hidden');
+                document.getElementById('inputSewa').classList.add('hidden');
 
-            const optionPesawat = document.createElement('option');
-            optionPesawat.value = 'pesawat';
-            optionPesawat.innerText = 'Pesawat';
-            select.appendChild(optionPesawat);
+                // Tampilkan input yang sesuai
+                if (pilihanTransportasi === "pesawat") {
+                    document.getElementById('inputPesawat').classList.remove('hidden');
+                    document.getElementById('inputPesawat').classList.add('flex'); // Pastikan flex ditambahkan
+                    document.getElementById('inputPesawatHarga').classList.remove('hidden');
+                    document.getElementById('inputPesawatHarga').classList.add('flex'); // Pastikan flex ditambahkan
+                } else if (pilihanTransportasi === "taksi") {
+                    document.getElementById('inputTaksi').classList.remove('hidden');
+                    document.getElementById('inputTaksi').classList.add('flex');
+                } else if (pilihanTransportasi === "oneWay") {
+                    document.getElementById('inputOneway').classList.remove('hidden');
+                    document.getElementById('inputOneway').classList.add('flex');
+                } else if (pilihanTransportasi === "sewaKendaraan") {
+                    document.getElementById('inputSewa').classList.remove('hidden');
+                    document.getElementById('inputSewa').classList.add('flex');
+                }
+            }
 
-            const optionTaksi = document.createElement('option');
-            optionTaksi.value = 'taksi';
-            optionTaksi.innerText = 'Taksi';
-            select.appendChild(optionTaksi);
+            function createInputField(parentDiv, labelText, inputName, inputType, isRequired = false) {
+                var inputWrapper = document.createElement("div");
+                inputWrapper.className = "flex mb-2";
 
-            const optionOneway = document.createElement('option');
-            optionOneway.value = 'oneway';
-            optionOneway.innerText = 'Oneway';
-            select.appendChild(optionOneway);
+                var labelDiv = document.createElement("div");
+                labelDiv.className = "md:w-1/6 block text-sm font-medium text-[#102E48] mt-2";
+                labelDiv.textContent = labelText;
 
-            const optionSewaKendaraan = document.createElement('option');
-            optionSewaKendaraan.value = 'sewa_kendaraan';
-            optionSewaKendaraan.innerText = 'Sewa Kendaraan';
-            select.appendChild(optionSewaKendaraan);
+                var inputDiv = document.createElement("div");
+                inputDiv.className = "md:w-5/6";
 
-            inputContainer.appendChild(select);
-            div.appendChild(label);
-            div.appendChild(inputContainer);
-            container.appendChild(div);
-        }
+                var inputField = document.createElement("input");
+                inputField.type = inputType;
+                inputField.name = inputName;
+                inputField.value = ""; // Set default value kosong
+                inputField.className = "bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2";
 
-        function showAdditionalTransportOptions(select, containerDiv) {
-            const selectedValue = select.value;
+                if (isRequired) {
+                    inputField.required = true;
+                }
 
-            const labelClass = document.createElement('div');
-            labelClass.classList.add('md:w-1/6', 'mt-3');
-            const labelElement = document.createElement('label');
-            labelElement.classList.add('block', 'text-sm', 'font-medium', 'text-[#102E48]', 'mt-2');
-            labelElement.innerText = 'Kelas ' + selectedValue.charAt(0).toUpperCase() + selectedValue.slice(1);
-            labelClass.appendChild(labelElement);
+                inputDiv.appendChild(inputField);
+                inputWrapper.appendChild(labelDiv);
+                inputWrapper.appendChild(inputDiv);
+                parentDiv.appendChild(inputWrapper);
+            }
 
-            const classContainer = document.createElement('div');
-            classContainer.classList.add('md:w-5/6', 'mt-3');
+            function createAirlineClassField(parentDiv) {
+                var classLabelWrapper = document.createElement("div");
+                classLabelWrapper.className = "flex mb-2";
 
-            const selectClass = document.createElement('select');
-            selectClass.name = `additional_transport_class_${selectedValue}`;
-            selectClass.classList.add('bg-white', 'border', 'border-gray-300', 'text-gray-900', 'text-sm', 'rounded-lg', 'focus:ring-blue-500', 'focus:border-blue-500', 'w-full', 'p-2');
-            const optionDefaultClass = document.createElement('option');
-            optionDefaultClass.value = '';
-            optionDefaultClass.innerText = 'Pilih Kelas';
-            selectClass.appendChild(optionDefaultClass);
+                var classLabel = document.createElement("div");
+                classLabel.textContent = "Kelas Penerbangan:";
+                classLabel.className = "md:w-1/6 block text-sm font-medium text-[#102E48] mt-2";
 
-            const optionEkonomi = document.createElement('option');
-            optionEkonomi.value = 'ekonomi';
-            optionEkonomi.innerText = 'Ekonomi';
-            selectClass.appendChild(optionEkonomi);
+                var classSelect = document.createElement("select");
+                classSelect.name = "kelasPenerbangan[]";
+                classSelect.className = "md:w-5/6 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2";
 
-            const optionBisnis = document.createElement('option');
-            optionBisnis.value = 'bisnis';
-            optionBisnis.innerText = 'Bisnis';
-            selectClass.appendChild(optionBisnis);
+                var classOptions = [{
+                        value: "bisnis",
+                        text: "Bisnis"
+                    },
+                    {
+                        value: "ekonomi",
+                        text: "Ekonomi"
+                    },
+                    {
+                        value: "firstClass",
+                        text: "First Class"
+                    }
+                ];
 
-            const optionFirstClass = document.createElement('option');
-            optionFirstClass.value = 'first_class';
-            optionFirstClass.innerText = 'First Class';
-            selectClass.appendChild(optionFirstClass);
+                classOptions.forEach(function(option) {
+                    var opt = document.createElement("option");
+                    opt.value = option.value;
+                    opt.textContent = option.text;
+                    classSelect.appendChild(opt);
+                });
 
-            classContainer.appendChild(selectClass);
-            containerDiv.appendChild(labelClass);
-            containerDiv.appendChild(classContainer);
-
-            const inputPrice = document.createElement('input');
-            inputPrice.type = 'number';
-            inputPrice.name = `additional_transport_price_${selectedValue}`;
-            inputPrice.placeholder = `Masukkan harga ${selectedValue}`;
-            inputPrice.classList.add('bg-white', 'border', 'border-gray-300', 'text-gray-900', 'text-sm', 'rounded-lg', 'focus:ring-blue-500', 'focus:border-blue-500', 'w-full', 'p-2', 'mt-3');
-            inputPrice.onchange = calculateTotal;
-
-            containerDiv.appendChild(inputPrice);
-        }
-    </script>
+                classLabelWrapper.appendChild(classLabel);
+                classLabelWrapper.appendChild(classSelect);
+                parentDiv.appendChild(classLabelWrapper);
+            }
+        </script>
 </body>
 
 </html>
