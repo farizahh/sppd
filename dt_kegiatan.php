@@ -56,8 +56,8 @@ include 'koneksi.php'
             <div class="p-4 sm:ml-64">
                 <div class="p-4 mt-14">
                     <h1 class="bg-gradient-to-r from-sky-900 to-sky-700 text-white font-medium text-md px-5 py-3 rounded-xl">Data Kegiatan</h1>
-                    <form action="" method="post">
-                        <div class="mt-5 mb-6 flex">
+                    <form action="simpan_spt.php" method="POST" onsubmit="calculateTotalTransport()">
+                    <div class="mt-5 mb-6 flex">
                             <div class="md:w-1/6">
                                 <label for="kode_provinsi" class="block text-sm font-medium text-[#102E48] mt-2">Provinsi </label>
                             </div>
@@ -145,20 +145,20 @@ include 'koneksi.php'
                         <!-- Lama Menginap -->
                         <div class="mt-3 mb-6 flex">
                             <div class="md:w-1/6">
-                                <label for="hotelNights" class="block text-sm font-medium text-[#102E48] mt-2">Lama Menginap</label>
+                                <label for="lama_menginap" class="block text-sm font-medium text-[#102E48] mt-2">Lama Menginap</label>
                             </div>
                             <div class="md:w-5/6">
-                                <input type="number" id="hotelNights" name="lamaMenginap" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2" placeholder="Masukkan lama menginap" required oninput="calculateTotal()" />
+                                <input type="number" id="lama_menginap" name="lama_menginap" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2" placeholder="Masukkan lama menginap" required oninput="calculateTotal()" />
                             </div>
                         </div>
 
                         <!-- Harga Hotel Per Malam -->
                         <div class="mt-3 mb-6 flex">
                             <div class="md:w-1/6">
-                                <label for="hotelPrice" class="block text-sm font-medium text-[#102E48] mt-2">Harga Hotel Per Malam</label>
+                                <label for="harga_hotel" class="block text-sm font-medium text-[#102E48] mt-2">Harga Hotel Per Malam</label>
                             </div>
                             <div class="md:w-5/6">
-                                <input type="number" id="hotelPrice" name="hargaHotel" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2" placeholder="Masukkan harga hotel per malam" required oninput="calculateTotal()" />
+                                <input type="number" id="harga_hotel" name="harga_hotel" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2" placeholder="Masukkan harga hotel per malam" required oninput="calculateTotal()" />
                             </div>
                         </div>
 
@@ -240,13 +240,15 @@ include 'koneksi.php'
                             <button type="button" class="px-4 py-2 bg-blue-500 text-sm text-white rounded-lg" onclick="addTransportField()">Tambah Transportasi</button>
                         </div>
 
+                        <input type="hidden" name="total_transport" id="total_transport" value="0">
+
                         <!-- Total -->
                         <div class="mt-3 mb-6 flex">
                             <div class="md:w-1/6">
-                                <label for="totalCost" class="block text-sm font-medium text-[#102E48] mt-2">Total Biaya</label>
+                                <label for="total_biaya" class="block text-sm font-medium text-[#102E48] mt-2">Total Biaya</label>
                             </div>
                             <div class="md:w-5/6">
-                                <input type="text" id="totalCost" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2" disabled />
+                                <input type="text" id="total_biaya" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2" disabled />
                             </div>
                         </div>
 
@@ -268,8 +270,8 @@ include 'koneksi.php'
                             <div class="md:w-5/6">
                                 <select id="penanggung_jawab" name="penanggung_jawab" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2">
                                     <option selected disabled>- Pilih Penanggung Jawab -</option>
-                                    <option value="kesya_sakha">Farizah Farhana</option>
-                                    <option value="ersy_genius">Ersy Genius</option>
+                                    <option value="Farizah Farhana">Farizah Farhana</option>
+                                    <option value="Ersy Genius">Ersy Genius</option>
                                 </select>
                             </div>
                         </div>
@@ -283,19 +285,14 @@ include 'koneksi.php'
                 </div>
             </div>
         </section>
-
-        <section id="footer">
-            <?php include "footer.php"; ?>
-        </section>
-
         <script>
             function calculateTotal() {
                 // Ambil nilai dari input hotel
-                const hotelPrice = parseFloat(document.getElementById("hotelPrice").value) || 0;
-                const hotelNights = parseInt(document.getElementById("hotelNights").value) || 0;
+                const harga_hotel = parseFloat(document.getElementById("harga_hotel").value) || 0;
+                const lama_menginap = parseInt(document.getElementById("lama_menginap").value) || 0;
 
                 // Hitung total biaya hotel
-                const totalHotel = hotelPrice * hotelNights;
+                const totalHotel = harga_hotel * lama_menginap;
 
                 // Ambil harga transportasi
                 const pilihanTransportasi = document.getElementById('transportasi').value;
@@ -319,15 +316,15 @@ include 'koneksi.php'
                 const total = totalHotel + totalTransport;
 
                 // Tampilkan total dalam format IDR
-                document.getElementById("totalCost").value = total.toLocaleString('id-ID', {
+                document.getElementById("total_biaya").value = total.toLocaleString('id-ID', {
                     style: 'currency',
                     currency: 'IDR'
                 });
             }
 
             // Tambahkan event listener untuk input
-            document.getElementById('hotelNights').addEventListener('input', calculateTotal);
-            document.getElementById('hotelPrice').addEventListener('input', calculateTotal);
+            document.getElementById('lama_menginap').addEventListener('input', calculateTotal);
+            document.getElementById('harga_hotel').addEventListener('input', calculateTotal);
             document.getElementById('transportasi').addEventListener('change', function() {
                 const pilihanTransportasi = this.value;
 
@@ -363,72 +360,106 @@ include 'koneksi.php'
             const hargaTiketPesawat = (parseFloat(document.getElementById('hargaTiketPesawat').value) || 0) + adjustment;
 
             function addTransportField() {
-                var transportContainer = document.getElementById("transportContainer");
-                var transportWrapper = document.createElement("div");
+            var transportContainer = document.getElementById("transportContainer");
+            var transportWrapper = document.createElement("div");
 
-                var transportSelectWrapper = document.createElement("div");
-                transportSelectWrapper.className = "flex mb-2";
+            var transportSelectWrapper = document.createElement("div");
+            transportSelectWrapper.className = "flex mb-2";
 
-                var transportSelectLabel = document.createElement("div");
-                transportSelectLabel.textContent = "Pilih Transportasi:";
-                transportSelectLabel.className = "md:w-1/6 block text-sm font-medium text-[#102E48] mt-2";
+            var transportSelectLabel = document.createElement("div");
+            transportSelectLabel.textContent = "Pilih Transportasi:";
+            transportSelectLabel.className = "md:w-1/6 block text-sm font-medium text-[#102E48] mt-2";
 
-                var transportSelect = document.createElement("select");
-                transportSelect.name = "transportasi[]";
-                transportSelect.className = "md:w-5/6 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2";
+            var transportSelect = document.createElement("select");
+            transportSelect.name = "transportasi[]";
+            transportSelect.className = "md:w-5/6 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2";
 
-                // Options for transportation selection
-                var options = [{
-                        value: "",
-                        text: "Pilih Transportasi"
-                    },
-                    {
-                        value: "pesawat",
-                        text: "Pesawat"
-                    },
-                    {
-                        value: "taksi",
-                        text: "Taksi"
-                    },
-                    {
-                        value: "oneWay",
-                        text: "One Way"
-                    },
-                    {
-                        value: "sewaKendaraan",
-                        text: "Sewa Kendaraan"
-                    }
-                ];
+            // Options for transportation selection
+            var options = [
+                { value: "", text: "Pilih Transportasi" },
+                { value: "pesawat", text: "Pesawat" },
+                { value: "taksi", text: "Taksi" },
+                { value: "oneWay", text: "One Way" },
+                { value: "sewaKendaraan", text: "Sewa Kendaraan" }
+            ];
 
-                options.forEach(function(option) {
-                    var opt = document.createElement("option");
-                    opt.value = option.value;
-                    opt.textContent = option.text;
-                    transportSelect.appendChild(opt);
-                });
+            options.forEach(function(option) {
+                var opt = document.createElement("option");
+                opt.value = option.value;
+                opt.textContent = option.text;
+                transportSelect.appendChild(opt);
+            });
 
-                // Div for transport details
-                var detailsDiv = document.createElement("div");
-                detailsDiv.className = "details";
+            // Div for transport details
+            var detailsDiv = document.createElement("div");
+            detailsDiv.className = "details";
 
-                // Change event for transport selection
-                transportSelect.addEventListener("change", function() {
-                    // Clear previous details
-                    while (transportWrapper.lastChild && transportWrapper.lastChild !== transportSelectWrapper) {
-                        transportWrapper.removeChild(transportWrapper.lastChild);
-                    }
+            // Change event for transport selection
+            transportSelect.addEventListener("change", function() {
+                // Clear previous details
+                while (transportWrapper.lastChild && transportWrapper.lastChild !== transportSelectWrapper) {
+                    transportWrapper.removeChild(transportWrapper.lastChild);
+                }
 
-                    transportWrapper.appendChild(detailsDiv);
-                    showAdditionalFields(this, detailsDiv);
-                });
+                transportWrapper.appendChild(detailsDiv);
+                showAdditionalFields(this, detailsDiv);
+            });
 
-                transportSelectWrapper.appendChild(transportSelectLabel);
-                transportSelectWrapper.appendChild(transportSelect);
-                transportWrapper.appendChild(transportSelectWrapper);
-                transportContainer.appendChild(transportWrapper);
+            transportSelectWrapper.appendChild(transportSelectLabel);
+            transportSelectWrapper.appendChild(transportSelect);
+            transportWrapper.appendChild(transportSelectWrapper);
+            transportContainer.appendChild(transportWrapper);
+
+            // Tambahkan listener untuk perubahan di input baru
+            detailsDiv.addEventListener('input', calculateTotal);
+        }
+
+                    // Function to calculate total transport cost
+            function calculateTotalTransport() {
+                var totalTransport = 0;
+
+                // Get values of transport inputs and add them to totalTransport
+                if (document.getElementById("hargaTiketPesawat")) {
+                    totalTransport += parseFloat(document.getElementById("hargaTiketPesawat").value) || 0;
+                }
+                if (document.getElementById("hargaTaksi")) {
+                    totalTransport += parseFloat(document.getElementById("hargaTaksi").value) || 0;
+                }
+                if (document.getElementById("hargaOneway")) {
+                    totalTransport += parseFloat(document.getElementById("hargaOneway").value) || 0;
+                }
+                if (document.getElementById("hargaSewa")) {
+                    totalTransport += parseFloat(document.getElementById("hargaSewa").value) || 0;
+                }
+
+                // Update the hidden input field with total transport cost
+                document.getElementById("total_transport").value = totalTransport;
+
+                // Update the total biaya (total cost)
+                updateTotalBiaya();
             }
 
-            document.getElementById("tambahTransportasiButton").addEventListener("click", addTransportField);
+            // Function to update total biaya
+            function updateTotalBiaya() {
+                var totalTransport = parseFloat(document.getElementById("total_transport").value) || 0;
+                var hargaHotel = parseFloat(document.getElementById("harga_hotel").value) || 0;
+                var lamaMenginap = parseInt(document.getElementById("lama_menginap").value) || 0;
+
+                var totalHotel = hargaHotel * lamaMenginap;
+
+                // Calculate total biaya
+                var totalBiaya = totalHotel + totalTransport;
+
+                // Display the total biaya
+                document.getElementById("total_biaya").value = totalBiaya;
+            }
+
+            // Add event listeners to trigger the calculations when values change
+            document.querySelectorAll('#hargaTiketPesawat, #hargaTaksi, #hargaOneway, #hargaSewa').forEach(function(input) {
+                input.addEventListener('input', calculateTotalTransport);
+            });
+
+
 
             function showAdditionalFields(select, detailsDiv) {
                 detailsDiv.innerHTML = ""; // Clear previous content
@@ -541,6 +572,10 @@ include 'koneksi.php'
                 classLabelWrapper.appendChild(classSelect);
                 parentDiv.appendChild(classLabelWrapper);
             }
+            function checkTotalTransport() {
+        var totalTransport = document.getElementById('total_transport').value;
+        console.log("Total Transport Value: " + totalTransport);  // Debugging: pastikan total transport terisi
+    }
         </script>
 </body>
 

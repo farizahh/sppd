@@ -147,67 +147,93 @@ include 'koneksi.php'
     </section>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#nip').change(function() {
-                var nip = $(this).val();
-                if (nip) {
-                    $.ajax({
-                        url: 'get_pegawai.php',
-                        type: 'POST',
-                        data: {
-                            nip: nip
-                        },
-                        success: function(response) {
+<script>
+    $(document).ready(function() {
+        $('#nip').change(function() {
+            var nip = $(this).val();
+            if (nip) {
+                $.ajax({
+                    url: 'get_pegawai.php',
+                    type: 'POST',
+                    data: { nip: nip },
+                    success: function(response) {
+                        try {
                             var data = JSON.parse(response);
                             $('#nama').val(data.nama);
                             $('#pangkat').val(data.pangkat);
                             $('#jabatan').val(data.jabatan);
+                        } catch (e) {
+                            console.error("Parsing error: ", e);
                         }
-                    });
-                } else {
-                    $('#nama').val('');
-                    $('#pangkat').val('');
-                    $('#jabatan').val('');
-                }
-            });
-
-            $('#saveButton').click(function() {
-                var nip = $('#nip').val();
-                var nama = $('#nama').val(); // Changed from '#name' to '#nama'
-                var pangkat = $('#pangkat').val();
-                var jabatan = $('#jabatan').val();
-
-                if (nip && nama && pangkat && jabatan) {
-                    var newRow = '<tr>' +
-                        '<td class="px-6 py-3 text-center"></td>' +
-                        '<td class="px-6 py-3 text-center">' + nip + '</td>' +
-                        '<td class="px-6 py-3 text-center">' + nama + '</td>' + // Changed from 'name' to 'nama'
-                        '<td class="px-6 py-3 text-center">' + pangkat + '</td>' +
-                        '<td class="px-6 py-3 text-center">' + jabatan + '</td>' +
-                        '<td class="px-6 py-3 text-center">' +
-                        '<button class="text-red-600 hover:text-red-900" onclick="deleteRow(this)">Delete</button>' +
-                        '</td>' +
-                        '</tr>';
-                    $('#pegawaiTableBody').append(newRow);
-                    updateRowNumbers();
-                } else {
-                    alert("Lengkapi semua data sebelum menyimpan.");
-                }
-            });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("AJAX Error: ", status, error);
+                    }
+                });
+            } else {
+                $('#nama, #pangkat, #jabatan').val('');
+            }
         });
 
-        function deleteRow(button) {
-            $(button).closest('tr').remove();
-            updateRowNumbers();
-        }
+        $('#saveButton').click(function() {
+            var nip = $('#nip').val();
+            var nama = $('#nama').val();
+            var pangkat = $('#pangkat').val();
+            var jabatan = $('#jabatan').val();
 
-        function updateRowNumbers() {
-            $('#pegawaiTableBody tr').each(function(index) {
-                $(this).find('td:first').text(index + 1);
-            });
-        }
-    </script>
+            if (nip && nama && pangkat && jabatan) {
+                var newRow = '<tr>' +
+                    '<td class="px-6 py-3 text-center"></td>' +
+                    '<td class="px-6 py-3 text-center">' + nip + '</td>' +
+                    '<td class="px-6 py-3 text-center">' + nama + '</td>' +
+                    '<td class="px-6 py-3 text-center">' + pangkat + '</td>' +
+                    '<td class="px-6 py-3 text-center">' + jabatan + '</td>' +
+                    '<td class="px-6 py-3 text-center">' +
+                    '<button class="text-red-600 hover:text-red-900" onclick="deleteRow(this)">Delete</button>' +
+                    '</td>' +
+                    '</tr>';
+                $('#pegawaiTableBody').append(newRow);
+                updateRowNumbers();
+                
+                // Simpan data ke server
+                savePegawai(nip, nama, pangkat, jabatan);
+            } else {
+                alert("Lengkapi semua data sebelum menyimpan.");
+            }
+        });
+    });
+
+    function deleteRow(button) {
+        $(button).closest('tr').remove();
+        updateRowNumbers();
+    }
+
+    function updateRowNumbers() {
+        $('#pegawaiTableBody tr').each(function(index) {
+            $(this).find('td:first').text(index + 1);
+        });
+    }
+
+    function savePegawai(nip, nama, pangkat, jabatan) {
+        $.ajax({
+            url: 'simpan_pegawai.php',
+            type: 'POST',
+            data: { nip: nip, nama: nama, kode_golongan: pangkat, kode_jabatan: jabatan },
+            success: function(response) {
+                if (response.trim() === "success") {
+                    alert("Pegawai berhasil disimpan!");
+                    location.reload();
+                } else {
+                    alert("Error: " + response);
+                }
+            },
+            error: function(xhr, status, error) {
+                alert("Terjadi kesalahan: " + error);
+            }
+        });
+    }
+</script>
+
 </body>
 
 </html>
